@@ -1,5 +1,5 @@
  .login-form {
-        max-width: 300px;
+        max-width: 400px;
       }
 
       .login-form-forgot {
@@ -9,3 +9,19 @@
       .login-form-button {
         width: 100%;
       }
+
+      .register {
+        color: black;
+        font-weight: bold;
+      }
+
+      .containerForm {
+        margin: 0;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+      }
+
+    

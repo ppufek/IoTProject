@@ -1,16 +1,20 @@
-<div class="jumbotron">
+<header>
+  <nav>
+    <ul>
+      <li><a routerLink="/" href="#" >Dominik</a></li>
+      <li><a routerLink="/paula" href="#">Paula</a></li>
+    </ul>
+  </nav>
+</header>
   <div class="container">
-      <div class="row">
-          <div class="col-sm-6 offset-sm-3">
 <!-- NG-ZORRO -->
 <a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
   <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
 </a>
-<button nz-button nzType="primary"><i nz-icon nzType="trophy"></i>NG-ZORRO-ANTD Playgroud</button>
-<app-login></app-login>
+<!-- <app-login></app-login> -->
 </div>
-      </div>
-    </div>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
 
 
