@@ -1,0 +1,12 @@
+[nz-button] {
+    width: 25%; 
+    margin-left: 5%; 
+}
+
+.logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      
+}
