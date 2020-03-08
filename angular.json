@@ -68,7 +68,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "IoTProject:build"
+            "browserTarget": "IoTProject:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
