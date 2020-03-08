@@ -1,15 +1,21 @@
 [nz-button] {
+<<<<<<< HEAD
     /* width: 25%;  */
     padding-left: 10%;
     padding-right: 10%;
     margin-left: 5%;
     margin-bottom: 5%; 
+=======
+    width: 25%; 
+    margin-left: 5%; 
+>>>>>>> 9512795a35de78f4614356a8428c4c1ec9b120fd
 }
 
 .logo{
         display: block;
         margin-left: auto;
         margin-right: auto;
+<<<<<<< HEAD
         width: 40%;
         padding-top: 5%;
 } 
@@ -17,4 +23,8 @@
 .container {
     width: 100%;  
     min-height: 100vh;
+=======
+        width: 50%;
+      
+>>>>>>> 9512795a35de78f4614356a8428c4c1ec9b120fd
 }
