@@ -28,6 +28,9 @@
       </nz-form-control>
     </nz-form-item>
   </form>
-    </div>
 </div>
+
+<div *ngIf="chart">
+  <canvas id="canvas">{{chart}}</canvas>
+  </div>
 

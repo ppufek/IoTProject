@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../http.service';
-import { ResourceLoader } from '@angular/compiler';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,7 @@ import { ResourceLoader } from '@angular/compiler';
 })
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
+  chart = [];
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -51,11 +52,54 @@ export class LoginComponent implements OnInit {
             console.log(measurementListLocal[counter].id)
             console.log(measurementListLocal[counter].time)
             console.log(measurementListLocal[counter].c8y_TemperatureMeasurement)
+
+
+            console.log("counter: " + counter)
+            console.log(data['measurements'][counter])
+            console.log(data['measurements'][counter].time)
+            
           }
           else {
             
           }
           counter++;
+
+          //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
+
+          let times = ["2020-01-01", "2020-03-03", "2020-03-09"]
+
+          let temp_min = '-10'
+          let temp_max = '23'
+
+          this.chart = new Chart('canvas', {
+            type: 'line',
+            data: {
+              labels: times,
+              datasets: [
+                {
+                  data: [temp_min, '10', temp_max],
+                  borderColor: '#3cba9f',
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              legend: {
+                display: true,
+                labels: {
+                  fontColor: 'rgb(255, 99, 132)'}
+              },
+              scales: {
+                xAxes: [{
+                  display: true
+                }],
+                yAxes: [{
+                  display: true
+                }]
+              }
+            }
+          })
+
         });
       }
       );
