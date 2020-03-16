@@ -17,11 +17,11 @@ const httpOptions = {
 })
 export class HttpService {
 
-  private REST_API_SERVER = "http://localhost:8080/measurements-hardcoded" //or /measurements-hardcoded
+  private REST_API_SERVER = "http://localhost:8080/measurements" //or /measurements-hardcoded
 
   constructor(private httpClient: HttpClient) { }
 
-  sendGetRequest(): Observable<IProduct> {
-    return this.httpClient.get<IProduct>(this.REST_API_SERVER, httpOptions);
+  sendGetRequest(): Observable<string> {
+    return this.httpClient.get<string>(this.REST_API_SERVER, httpOptions);
   }
 }

@@ -14,26 +14,15 @@ export class LoginComponent implements OnInit {
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
+      //validation
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-  }
-
-  constructor(private fb: FormBuilder, private httpService: HttpService) { }
-
-  product: any = [];
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
 
     this.httpService.sendGetRequest()
       .subscribe(data => {
         this.product = JSON.parse(JSON.stringify(data))
-
+        console.log(data)
         console.log(this.product);
         let measurements = data['measurements']
           .map(data => data.measurement)
@@ -103,5 +92,19 @@ export class LoginComponent implements OnInit {
         });
       }
       );
+  }
+
+  constructor(private fb: FormBuilder, private httpService: HttpService) { }
+
+  product: any = [];
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      remember: [true]
+    });
+
+    
   }
 }

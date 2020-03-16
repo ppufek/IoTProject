@@ -8,7 +8,7 @@ import { LandingComponent } from './landing/landing.component';
 const routes: Routes = [ 
   {path: '', component: LandingComponent },
   {path: 'dominik', component: LoginComponent },
-  {path: 'paula', component: DashboardComponent}];
+  {path: 'dominik/dashboard', component: DashboardComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
