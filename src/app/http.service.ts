@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'username': 't5185958/iot1@croatia.rit.edu',
-    'password': 'iotrit123'
+    'password': 'iotrit1234'
   }),
   //responseType: 'text'
 }

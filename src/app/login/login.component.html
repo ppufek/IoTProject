@@ -1,6 +1,9 @@
 <div class="container-login100" style="background-image: url('../assets/img/bg-01.jpg');">
   <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
     <img class = "logo" src = "../assets/img/RITIntelligence.svg">
+    <div *ngIf="alert" class="alert">
+      <h2 id="alertText">{{alert}}</h2>
+    </div>
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
@@ -30,7 +33,7 @@
   </form>
 </div>
 
-<div *ngIf="chart">
+<!-- <div *ngIf="chart">
   <canvas id="canvas">{{chart}}</canvas>
-  </div>
+  </div> -->
 
