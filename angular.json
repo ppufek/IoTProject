@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "IoTProject"
+  "defaultProject": "IoTProject",
+  "cli": {
+    "analytics": "b02c79b3-e008-46f6-b16e-6c8f33f61fbf"
+  }
 }

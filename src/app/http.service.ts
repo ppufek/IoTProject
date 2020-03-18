@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'username': 't5185958/iot1@croatia.rit.edu',
-    'password': 'iotrit1234'
+    'Content-Type':  'application/json',
   }),
   //responseType: 'text'
 }
@@ -21,7 +20,9 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  sendGetRequest(): Observable<string> {
+  sendGetRequest(username, password): Observable<string> {
+    httpOptions.headers = httpOptions.headers.set('username', username);
+    httpOptions.headers = httpOptions.headers.set('password', password);
     return this.httpClient.get<string>(this.REST_API_SERVER, httpOptions);
   }
 }
