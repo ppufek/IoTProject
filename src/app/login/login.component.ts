@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
     // this.regexValidation(); 
     this.validation();
     // this.sanitization(); 
-    //console.log(this.httpService.sendGetRequest())
 
     // https://angular.io/guide/http
   }
@@ -57,20 +56,17 @@ export class LoginComponent implements OnInit {
           this.alert = "401 Unauthorized: Invalid Authentication Credentials"
         }
         else {
-          //console.log(res);
           this.extractData(res);
 
           console.log("No errors!");
-          this.router.navigate(['dominik/dashboard']);
+          //this.router.navigate(['dominik/dashboard']);
           //localStorage.setItem('loggedIn', 'true') //JSON.parse(localStorage.getItem('loggedIn'))--> returns boolean
         }
       });
   }
 
   extractData(data) {
-    // console.log(data)
-    // console.log("JSON stringify BELOW:")
-    // console.log(JSON.parse(JSON.stringify(data)))
+
     let measurements = data['measurements']
       .map(data => data.measurement)
 
@@ -88,20 +84,9 @@ export class LoginComponent implements OnInit {
 
         //if Temperature
         if (measurementListLocal[counter].type === "c8y_TemperatureMeasurement") {
-          // console.log("TEMPERATURE")
-          // console.log(measurementListLocal[counter].id)
-          // console.log(measurementListLocal[counter].time)
-          // console.log(measurementListLocal[counter].c8y_TemperatureMeasurement)
-
-
-          // console.log("counter: " + counter)
-          // console.log(data['measurements'][counter])
-          // console.log(data['measurements'][counter].time)
           let dateTime = data['measurements'][counter].time
           let date = dateTime.split("T", 2);
-          console.log("DATE: " + date[0])
           let time = date[1].split(".", 1)
-          console.log("TIME: " + time)
           this.times.push(date[0] + " " + time)
           let T = measurementListLocal[counter].c8y_TemperatureMeasurement.T
 
@@ -110,7 +95,7 @@ export class LoginComponent implements OnInit {
           JSON.parse(userStr, (key, value) => {
 
             if (key === "value") {
-              this.values.push(value)
+              this.values.push(value.toString())
             }
           });
 
@@ -123,48 +108,44 @@ export class LoginComponent implements OnInit {
           }
         }
         counter++;
-
-        //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
-
-        // let times = ["2020-01-01", "2020-03-03", "2020-03-09"]
-
-        // let temp_min = '-10'
-        // let temp_max = '23'
-
-        // this.chart = new Chart('canvas', {
-        //   type: 'line',
-        //   data: {
-        //     labels: times,
-        //     datasets: [
-        //       {
-        //         data: [temp_min, '10', temp_max],
-        //         borderColor: '#3cba9f',
-        //         fill: false
-        //       }
-        //     ]
-        //   },
-        //   options: {
-        //     legend: {
-        //       display: true,
-        //       labels: {
-        //         fontColor: 'rgb(255, 99, 132)'}
-        //     },
-        //     scales: {
-        //       xAxes: [{
-        //         display: true
-        //       }],
-        //       yAxes: [{
-        //         display: true
-        //       }]
-        //     }
-        //   }
-        // })
       }//end if keepGoing
 
     });
     console.log("FINAL")
     console.log(this.times)
     console.log(this.values)
+
+
+    //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
+      this.chart = new Chart('canvas', {
+        type: 'line',
+        data: {
+          labels: this.times,
+          datasets: [
+            {
+              data: this.values,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true,
+            labels: {
+              fontColor: 'rgb(255, 99, 132)'
+            }
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }]
+          }
+        }
+      })
   }
 
   // regexValidation(){
@@ -172,7 +153,6 @@ export class LoginComponent implements OnInit {
   //     this.regexp2 = new RegExp('[^/]io|[^@]cro ')
   //     let test = this.regexp.test(this.username, this.password);
   //     console.log(test); 
-
   // }
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router) { }
