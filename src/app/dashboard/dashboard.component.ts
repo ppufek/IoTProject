@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +8,17 @@ import { HttpService } from '../http.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { 
+  message: Map<string, string[]>
 
-  }
+  constructor(private sharedService: SharedService) {}
 
   ngOnInit(): void {
+    this.sharedService.sharedMessage1.subscribe(message => this.message = message)
     console.log("Hello from Dashb")
+    console.log(this.message)
+
+    this.sharedService.sharedMessage2.subscribe(message => this.message = message)
+    console.log(this.message)
   }
 
 }

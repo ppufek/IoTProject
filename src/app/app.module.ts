@@ -11,6 +11,13 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
+import { DefaultModule } from './layouts/default/default.module';
+
+
+
+
+
+
 
 registerLocaleData(en);
 
@@ -18,7 +25,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,9 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DefaultModule
+    
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

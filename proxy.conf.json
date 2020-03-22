@@ -1,7 +1,9 @@
 {
     "/api/*": {
-        "target": "http://localhost:8080/measurements-hardcoded",
-        "logLevel": "debug",
-        "changeOrigin": true
+      "target": "https://localhost:8080",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {"^/api" : "http://localhost:8080/measurements"}
     }
-}
+  }
