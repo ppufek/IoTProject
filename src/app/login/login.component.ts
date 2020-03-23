@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
           this.alert = "401 Unauthorized: Invalid Authentication Credentials"
         }
         else {
+          this.sharedService.setLoggedIn(true); 
           this.extractData(res);
 
           //localStorage.setItem('loggedIn', 'true') //JSON.parse(localStorage.getItem('loggedIn'))--> returns boolean
@@ -130,7 +131,7 @@ export class LoginComponent implements OnInit {
     console.log(this.times)
     console.log(this.values)
 
-    this.router.navigate(['dominik/dashboard']);
+    this.router.navigate(['/app/dashboard']);
 
     //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
     //   this.chart = new Chart('canvas', {

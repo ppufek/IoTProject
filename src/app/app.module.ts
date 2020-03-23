@@ -12,6 +12,7 @@ import en from '@angular/common/locales/en';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { DefaultModule } from './layouts/default/default.module';
+import { AuthGuardService } from './auth-guard.service';
 
 
 
@@ -38,7 +39,7 @@ registerLocaleData(en);
     DefaultModule
     
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

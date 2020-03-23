@@ -1,5 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +11,18 @@ import { EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() openSidebarForMe: EventEmitter<any> = new EventEmitter()
-  constructor() { }
+  constructor(private sharedService: SharedService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  openSidebar(){
-     this.openSidebarForMe.emit(); 
+  openSidebar() {
+    this.openSidebarForMe.emit();
+  }
+
+  signOut() {
+    this.sharedService.setLoggedIn(false);
+    this.router.navigate(["/dominik"]);
   }
 
 }
