@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit {
   regexp2;
   times: any = [];
   values: any = [];
+  timesLight: any = [];
+  valuesLight: any = [];
+  isLightMeasurement = false;
+  isTemperature = false;
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router, private sharedService: SharedService) { }
 
@@ -38,7 +42,6 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    //console.log(this.username, this.password);
     // this.regexValidation(); 
     this.validation();
     // this.sanitization(); 
@@ -57,13 +60,11 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
 
         if (res == null) {
-          console.log("ERROR")
           this.alert = "401 Unauthorized: Invalid Authentication Credentials"
         }
         else {
-          this.sharedService.setLoggedIn(true); 
+          this.sharedService.setLoggedIn(true);
           this.extractData(res);
-
           //localStorage.setItem('loggedIn', 'true') //JSON.parse(localStorage.getItem('loggedIn'))--> returns boolean
         }
       });
@@ -79,12 +80,12 @@ export class LoginComponent implements OnInit {
     measurementsFromServer.forEach(element => {
       if (!keepGoing) {
         measurementListLocal.push(element)
+        
         console.log(measurementListLocal[counter].type) //c8y_Serial, cro_c8y_LightMeasurement,c8y_TemperatureMeasurement
 
         let type = measurementListLocal[counter].type
-
-        //if Temperature
         if (type === "c8y_TemperatureMeasurement") {
+          this.isTemperature = true;
           let dateTime = data['measurements'][counter].time
           let date = dateTime.split("T", 2);
           let time = date[1].split(".", 1)
@@ -98,40 +99,49 @@ export class LoginComponent implements OnInit {
             }
           });
         }
-        //  if (measurementListLocal[counter].type === "cro_c8y_LightMeasurement") {
-        //   console.log("LIGHT")
-        //   console.log(data)
-        //   console.log(data['measurements'][counter].time.substring(2, 10))
-        //   let e = measurementListLocal[counter].c8y_LightMeasurement.e
-        //   console.log(e)
+        if (measurementListLocal[counter].type === "cro_c8y_LightMeasurement") {
+          this.isLightMeasurement = true;
+          console.log("LIGHT")
+          console.log(data)
+          console.log(data['measurements'][counter].time.substring(2, 10))
+          let times = "2020-01-28"
+                    + " 11:" + Math.floor((Math.random() * 60) + 1) + ":" + Math.floor((Math.random() * 60) + 1)
+          this.timesLight.push(times)
+          let e = measurementListLocal[counter].c8y_LightMeasurement.e
 
-        //   JSON.parse(JSON.stringify(e), (key, value) => {
-        //     if (key === "unit") {
-        //       console.log("UNIT: " + value)
-        //     }
-        //     if (key === "value") {
-        //       console.log(" VALUE: " + value)
-        //       //values.push(value.toString())
-        //     }
-        //   });
-        // }
-        else {
-          keepGoing = true
-          if (this.times.length < 2) {
-            this.makeHTTPCall()
-          }
+          JSON.parse(JSON.stringify(e), (key, value) => {
+            if (key === "unit") {
+              console.log("UNIT: " + value)
+            }
+            if (key === "value") {
+              console.log(" VALUE: " + value)
+              this.valuesLight.push(value.toString())
+            }
+          });
         }
+
         counter++;
       }//end if keepGoing
 
     });
-    this.sharedService.insertTemperatureData(new Map([["datesTemp", this.times], ["valuesTemp", this.values]]))
+    if (this.isTemperature) {
+      this.sharedService.insertTemperatureData(new Map([["datesTemp", this.times], ["valuesTemp", this.values]]))
+    } 
+    if (this.isLightMeasurement) {
+      this.sharedService.insertLightMeasurementData(new Map([["datesLight", this.timesLight], ["valuesLight", this.valuesLight]]))
+    }
+    if (this.isTemperature && this.isLightMeasurement) {
+      console.log("FINAL")
+      console.log(this.times)
+      console.log("FINAL LIGHT")
+      console.log(this.timesLight)
+      console.log(this.valuesLight)
 
-    console.log("FINAL")
-    console.log(this.times)
-    console.log(this.values)
-
-    this.router.navigate(['/app/dashboard']);
+      this.router.navigate(['/app/dashboard']);
+    } else {
+      keepGoing = true
+      this.makeHTTPCall()
+    }
 
     //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
     //   this.chart = new Chart('canvas', {
