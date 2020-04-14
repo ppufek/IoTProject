@@ -9,11 +9,12 @@ import { LightMeasurementComponent } from 'src/app/light-measurement/light-measu
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
+
 @NgModule({
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    LightMeasurementComponent
+    LightMeasurementComponent,
   ],
   imports: [
     CommonModule,
