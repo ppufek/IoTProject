@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardsComponent } from './widgets/cards/cards.component';
+import { LightMeasurementComponent } from '../light-measurement/light-measurement.component';
+
 
 
 
@@ -18,7 +20,9 @@ import { CardsComponent } from './widgets/cards/cards.component';
     FooterComponent,
     SidebarComponent,
     AreaComponent,
-    CardsComponent
+    CardsComponent,
+    LightMeasurementComponent
+
     
   ],
   imports: [
@@ -40,7 +44,8 @@ import { CardsComponent } from './widgets/cards/cards.component';
     FooterComponent,
     SidebarComponent,
     AreaComponent,
-    CardsComponent
+    CardsComponent,
+
   ]
 })
 export class SharedModule { }

@@ -18,6 +18,11 @@ export class HeaderComponent implements OnInit {
 
   openSidebar() {
     this.openSidebarForMe.emit();
+    setTimeout(()=>{
+      window.dispatchEvent(
+          new Event('resize')
+      );
+  }, 300)
   }
 
   signOut() {

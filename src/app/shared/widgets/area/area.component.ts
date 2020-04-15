@@ -79,6 +79,7 @@ export class AreaComponent implements OnInit {
                 new Event('resize')
             );
         }, 300)
+        
 
     }
 }

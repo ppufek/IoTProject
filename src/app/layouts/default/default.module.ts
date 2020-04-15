@@ -4,8 +4,7 @@ import { DefaultComponent } from './default.component';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import {MatSidenavModule, MatDividerModule, MatCardModule} from '@angular/material'; 
-import { LightMeasurementComponent } from 'src/app/light-measurement/light-measurement.component';
+import {MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule} from '@angular/material'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -14,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    LightMeasurementComponent,
+
   ],
   imports: [
     CommonModule,
@@ -23,7 +22,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSidenavModule,
     MatDividerModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule
   ]
 })
 export class DefaultModule { }

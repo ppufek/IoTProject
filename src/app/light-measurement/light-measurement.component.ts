@@ -38,7 +38,7 @@ export class LightMeasurementComponent implements OnInit {
               },
               yAxis: {
                   title: {
-                      text: 'Celsius'
+                      text: 'LUX'
                   },
                   labels: {
                       formatter: function () {
@@ -48,7 +48,7 @@ export class LightMeasurementComponent implements OnInit {
               },
               tooltip: {
                   split: true,
-                  valueSuffix: ' degrees'
+                  valueSuffix: ' phots'
               },
               plotOptions: {
                   area: {
@@ -62,7 +62,7 @@ export class LightMeasurementComponent implements OnInit {
                   }
               },
               series: [{
-                  name: 'Temperature',
+                  name: 'Light Measurement',
                   data: measurements.get("valuesLight").map(i=>Math.round(Number(i)* 10)/10),
               }, 
               ]
