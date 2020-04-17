@@ -64,6 +64,7 @@ mat-icon {
   height: 90%; 
   padding-top: 5%;
   padding-bottom: 5%;
+  padding-left: 25px; 
   padding-right: 35px;
 }
 .container-login100 {
@@ -87,6 +88,7 @@ mat-icon {
   border-radius: 10px;
   overflow: hidden;
   margin: 5%;
-  padding-right:20px;
-  width:250px;
+  padding-right:15px;
+  padding-left: 7px; 
+  width:300px;
 }
