@@ -1,10 +1,11 @@
 <div class="container-login100" style="background-image: url('../assets/img/bg-01.jpg');">
   <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-    <img class = "logo" src = "../assets/img/RITIntelligence.svg">
+    <img class="logo" src="../assets/img/RITIntelligence.svg">
+    <!-- <h2 id="title">RIT Intelligence</h2> -->
     <div *ngIf="alert" class="alert">
       <h2 id="alertText">{{alert}}</h2>
     </div>
-  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <!-- <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
         <nz-input-group nzPrefixIcon="user">
@@ -25,15 +26,42 @@
           <span>Remember me</span>
         </label>
         <a class="login-form-forgot" routerLink = "dashboard" class="login-form-forgot">Forgot password</a>
-        <a><button nz-button class="login-form-button" [nzType]="'primary'">Log in</button></a> 
+        <a routerLink = "dashboard"><button nz-button class="login-form-button" [nzType]="'primary'">Log in</button></a> 
         Or
         <a class = "register">register now!</a>
       </nz-form-control>
     </nz-form-item>
-  </form>
-</div>
+  </form> -->
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input [(ngModel)]="username" formControlName="userName" nz-input placeholder="Username"
+              formControlName="userName" type="text" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
-<div *ngIf="chart">
-  <canvas id="canvas">{{chart}}</canvas>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <div class="passwordInput">
+
+            <nz-input-group nzPrefixIcon="lock">
+
+              <input class="inputFieldPassword" [type]="hide ? 'password' : 'text'" [(ngModel)]="password"
+                formControlName="password" nz-input type="password" placeholder="Password" />
+              <mat-icon (click)="hide = !hide">visibility</mat-icon>
+
+            </nz-input-group>
+          </div>
+
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
   </div>
-

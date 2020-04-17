@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../http.service';
-import { Chart } from 'chart.js';
-import { Observable, empty } from 'rxjs';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 
@@ -25,6 +23,8 @@ export class LoginComponent implements OnInit {
   valuesLight: any = [];
   isLightMeasurement = false;
   isTemperature = false;
+  hide = true
+  passwordInput 
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router, private sharedService: SharedService) { }
 
@@ -58,14 +58,12 @@ export class LoginComponent implements OnInit {
   makeHTTPCall() {
     this.httpService.sendGetRequest(this.username, this.password)
       .subscribe(res => {
-
         if (res == null) {
           this.alert = "401 Unauthorized: Invalid Authentication Credentials"
         }
         else {
           this.sharedService.setLoggedIn(true);
           this.extractData(res);
-          //localStorage.setItem('loggedIn', 'true') //JSON.parse(localStorage.getItem('loggedIn'))--> returns boolean
         }
       });
   }
@@ -84,7 +82,7 @@ export class LoginComponent implements OnInit {
         console.log(measurementListLocal[counter].type) //c8y_Serial, cro_c8y_LightMeasurement,c8y_TemperatureMeasurement
 
         let type = measurementListLocal[counter].type
-        if (type === "c8y_TemperatureMeasurement") {
+        if (type === "c8y_TemperatureMeasurement" && this.values.length < 5) {
           this.isTemperature = true;
           let dateTime = data['measurements'][counter].time
           let date = dateTime.split("T", 2);
@@ -93,17 +91,13 @@ export class LoginComponent implements OnInit {
           let T = measurementListLocal[counter].c8y_TemperatureMeasurement.T
 
           JSON.parse(JSON.stringify(T), (key, value) => {
-
             if (key === "value") {
               this.values.push(value.toString())
             }
           });
         }
-        if (measurementListLocal[counter].type === "cro_c8y_LightMeasurement") {
+        if (measurementListLocal[counter].type === "cro_c8y_LightMeasurement" && this.valuesLight.length < 5) {
           this.isLightMeasurement = true;
-          console.log("LIGHT")
-          console.log(data)
-          console.log(data['measurements'][counter].time.substring(2, 10))
           let times = "2020-01-28"
                     + " 11:" + Math.floor((Math.random() * 60) + 1) + ":" + Math.floor((Math.random() * 60) + 1)
           this.timesLight.push(times)
@@ -111,10 +105,8 @@ export class LoginComponent implements OnInit {
 
           JSON.parse(JSON.stringify(e), (key, value) => {
             if (key === "unit") {
-              console.log("UNIT: " + value)
             }
             if (key === "value") {
-              console.log(" VALUE: " + value)
               this.valuesLight.push(value.toString())
             }
           });
@@ -124,55 +116,15 @@ export class LoginComponent implements OnInit {
       }//end if keepGoing
 
     });
-    if (this.isTemperature) {
-      this.sharedService.insertTemperatureData(new Map([["datesTemp", this.times], ["valuesTemp", this.values]]))
-    } 
-    if (this.isLightMeasurement) {
-      this.sharedService.insertLightMeasurementData(new Map([["datesLight", this.timesLight], ["valuesLight", this.valuesLight]]))
-    }
     if (this.isTemperature && this.isLightMeasurement) {
-      console.log("FINAL")
-      console.log(this.times)
-      console.log("FINAL LIGHT")
-      console.log(this.timesLight)
-      console.log(this.valuesLight)
+      this.sharedService.insertTemperatureData(new Map([["datesTemp", this.times], ["valuesTemp", this.values]]))
+      this.sharedService.insertLightMeasurementData(new Map([["datesLight", this.timesLight], ["valuesLight", this.valuesLight]]))
 
       this.router.navigate(['/app/dashboard']);
     } else {
       keepGoing = true
       this.makeHTTPCall()
     }
-
-    //https://ej2.syncfusion.com/angular/documentation/chart/legend/ FORMATTING LEGEND
-    //   this.chart = new Chart('canvas', {
-    //     type: 'line',
-    //     data: {
-    //       labels: times,
-    //       datasets: [
-    //         {
-    //           data: values,
-    //           borderColor: '#3cba9f',
-    //           fill: false
-    //         }
-    //       ]
-    //     },
-    //     options: {
-    //       legend: {
-    //         display: true,
-    //         labels: {
-    //           fontColor: 'rgb(255, 99, 132)'
-    //         }
-    //       },
-    //       scales: {
-    //         xAxes: [{
-    //           display: true
-    //         }],
-    //         yAxes: [{
-    //           display: true
-    //         }]
-    //       }
-    //     }
-    //   })
   }
 
   // regexValidation(){

@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { AuthGuardService } from './auth-guard.service';
-
+import { MatDividerModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatButtonModule } from '@angular/material';
 
 
 
@@ -36,7 +36,13 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    DefaultModule
+    DefaultModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule, 
+    MatListModule,
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuardService],

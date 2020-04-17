@@ -1,17 +1,35 @@
+#title {
+  text-align: center;
+}
+
+.passwordInput mat-icon { 
+  position: absolute; 
+} 
+
+.passwordInput {
+  width: 100%; 
+  margin-bottom: 10px; 
+}
+
+
+mat-icon {
+  padding: 5px;
+  min-width: 10px;
+  max-width: 11px;
+}
+
+.inputFieldPassword {
+  width: 100%; 
+  padding: 10px; 
+}
+
 .login-form {
-  max-width: 75%;
+  max-width: 85%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.login-form-forgot {
-  float: right;
-  color: #858484;
-}
 
-.login-form-forgot:hover {
-  color: #59BAFF;
-}
 .login-form-button {
   width: 100%;
 }
@@ -42,10 +60,11 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  height: 50%; 
+  width: 90%;
+  height: 90%; 
   padding-top: 5%;
   padding-bottom: 5%;
+  padding-right: 35px;
 }
 .container-login100 {
   width: 100%;  
@@ -68,4 +87,6 @@
   border-radius: 10px;
   overflow: hidden;
   margin: 5%;
+  padding-right:20px;
+  width:250px;
 }
