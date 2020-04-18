@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class HttpService {
 
-  private REST_API_SERVER = "https://localhost:8080/measurements" //or /measurements-hardcoded
+  private REST_API_SERVER = "/api/measurements" //or /measurements-hardcoded
 
   constructor(private httpClient: HttpClient) { }
 
