@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
+     'X-Frame-Options': 'Deny'
   }),
   //responseType: 'text'
 }
