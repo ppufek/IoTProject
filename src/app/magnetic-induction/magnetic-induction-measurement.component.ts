@@ -32,9 +32,8 @@ export class MagneticInductionComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
 
+    // this code is responsible for extracting the magentic induction data and storing it into the table
     this.sharedService.sharedMessage2.subscribe(message => this.message1 = message)
-  
-
     let newArray: PeriodicElement[] = []
 
     for (let key of Array.from(this.message1.keys())) {
@@ -56,10 +55,9 @@ export class MagneticInductionComponent implements OnInit {
     }
     this.dataSource = new MatTableDataSource<PeriodicElement>(newArray);
 
-
+      // storing magnetic induction data into the chart
       this.sharedService.sharedMessage2.subscribe(measurements => {
-          console.log('Widget', measurements);
-
+          
           this.chartsOptions = {
               chart: {
                   type: 'area'

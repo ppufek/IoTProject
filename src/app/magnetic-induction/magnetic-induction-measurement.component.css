@@ -14,9 +14,7 @@ table {
     width: 28% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
     word-break: break-word;
-  
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -30,9 +28,7 @@ table {
     width: 25% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
     word-break: break-word;
-  
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -46,9 +42,7 @@ table {
     width: 17% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
     word-break: break-word;
-  
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;

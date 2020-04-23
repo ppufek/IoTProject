@@ -17,7 +17,7 @@ export class AreaComponent implements OnInit {
 
     ngOnInit() {
         this.sharedService.sharedMessage1.subscribe(measurements => {
-            console.log('Widget', measurements);
+            
 
             this.chartsOptions = {
                 chart: {

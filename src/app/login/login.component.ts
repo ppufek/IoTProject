@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   }
 
+  // This function is responsible for the input validation 
   validation() {
     if (this.username.trim().length == 0 || this.password.trim().length == 0) {
       this.alert = "Please provide username and password";
@@ -54,6 +55,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Making the call to the server and sending the credentials 
   makeHTTPCall() {
     this.httpService.sendGetRequest(this.username, this.password)
       .subscribe(res => {
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  // This function is repsonsible for extracing the data from the response and redirecting the user to the dashboard
   extractData(data) {
 
     let measurementListLocal = []
@@ -77,8 +80,6 @@ export class LoginComponent implements OnInit {
     measurementsFromServer.forEach(element => {
       if (!keepGoing) {
         measurementListLocal.push(element)
-
-        console.log(measurementListLocal[counter].type) //c8y_Serial, cro_c8y_LightMeasurement,c8y_TemperatureMeasurement, cro_TeslaMeasurement
 
         let type = measurementListLocal[counter].type
         if (type === "c8y_TemperatureMeasurement" && this.values.length < 5) {
@@ -101,10 +102,6 @@ export class LoginComponent implements OnInit {
                     + " 11:" + Math.floor((Math.random() * 60) + 1) + ":" + Math.floor((Math.random() * 60) + 1)
           this.timesTesla.push(times)
           let e = measurementListLocal[counter].cro_TeslaMeasurement
-          console.log(measurementListLocal[counter].cro_TeslaMeasurement);
-          console.log("Paula");
-          console.log(measurementListLocal[counter].cro_TeslaMeasurement.e); 
-          console.log("Dominik");
           JSON.parse(JSON.stringify(e), (key, value) => {
             if (key === "unit") {
             }
@@ -115,7 +112,7 @@ export class LoginComponent implements OnInit {
         }
 
         counter++;
-      }//end if keepGoing
+      }
 
     });
     if (this.isTemperature && this.isTeslaMeasurement) {

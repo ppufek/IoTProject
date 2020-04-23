@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
@@ -14,11 +13,6 @@ import { LandingComponent } from './landing/landing.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { AuthGuardService } from './auth-guard.service';
 import { MatDividerModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatButtonModule } from '@angular/material';
-
-
-
-
-
 
 registerLocaleData(en);
 
@@ -41,9 +35,9 @@ registerLocaleData(en);
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule, 
+    MatMenuModule,
     MatListModule,
-    
+
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuardService],
   bootstrap: [AppComponent]

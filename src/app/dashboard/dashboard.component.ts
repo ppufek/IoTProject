@@ -29,18 +29,15 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
 
+     // this code is responsible for extracting the temperature data and storing it into the table
     this.sharedService.sharedMessage1.subscribe(message => this.message = message)
-
     let newArray: PeriodicElement[] = []
 
     for (let key of Array.from(this.message.keys())) {
 
       for (let i = 0; i < this.message.get(key).length; i++) {
         if (key === "valuesTemp") {
-          // newArray.forEach(obj => {
-          //     obj.value = this.message.get(key)[i];
-          //     console.log(obj.value);
-          // });
+
           newArray[i].value = this.message.get(key)[i]
         } else {
           let modal: PeriodicElement = {

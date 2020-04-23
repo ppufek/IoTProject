@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-     'X-Frame-Options': 'Deny'
+     'X-Frame-Options': 'DENY'
   }),
-  //responseType: 'text'
+  
 }
 
 @Injectable({
@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class HttpService {
 
-  private REST_API_SERVER = "/api/measurements" //or /measurements-hardcoded
+  private REST_API_SERVER = "/api/measurements" 
 
   constructor(private httpClient: HttpClient) { }
 
