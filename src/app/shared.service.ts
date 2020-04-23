@@ -12,8 +12,8 @@ export class SharedService {
     private temperatureData = new BehaviorSubject<Map<string, string[]>>(new Map([["key1", ["value"]], ["key2", ["value"]]]));
     sharedMessage1 = this.temperatureData.asObservable();
 
-    private lightMeasurementData = new BehaviorSubject<Map<string, string[]>>(new Map([["key1", ["value"]], ["key2", ["value"]]]));
-    sharedMessage2 = this.lightMeasurementData.asObservable();
+    private teslaMeasurementData = new BehaviorSubject<Map<string, string[]>>(new Map([["key1", ["value"]], ["key2", ["value"]]]));
+    sharedMessage2 = this.teslaMeasurementData.asObservable();
 
     constructor() { }
 
@@ -21,8 +21,8 @@ export class SharedService {
         this.temperatureData.next(message)
     }
 
-    insertLightMeasurementData(message: Map<string,string[]>) {
-        this.lightMeasurementData.next(message)
+    insertTeslaMeasurementData(message: Map<string,string[]>) {
+        this.teslaMeasurementData.next(message)
     }
 
     isLoggedIn():boolean{

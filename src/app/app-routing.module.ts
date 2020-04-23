@@ -4,13 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 import { DefaultComponent } from './layouts/default/default.component';
-import { LightMeasurementComponent } from './light-measurement/light-measurement.component';
+import { MagneticInductionComponent } from './magnetic-induction/magnetic-induction-measurement.component';
 import { AuthGuardService } from './auth-guard.service';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dominik', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   {
     path: 'app', component: DefaultComponent,
     canActivate: [AuthGuardService],
@@ -19,8 +19,8 @@ const routes: Routes = [
       component: DashboardComponent
     },
     {
-      path: 'light-measurement',
-      component: LightMeasurementComponent
+      path: 'magnetic-induction',
+      component: MagneticInductionComponent
 
     }]
   },

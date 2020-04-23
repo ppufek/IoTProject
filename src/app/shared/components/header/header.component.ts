@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     this.sharedService.setLoggedIn(false);
-    this.router.navigate(["/dominik"]);
+    this.router.navigate(["/login"]);
   }
 
 }

@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LightMeasurementComponent } from './light-measurement.component';
+import{MagneticInductionComponent} from './magnetic-induction-measurement.component';
 
 describe('LightMeasurementComponent', () => {
-  let component: LightMeasurementComponent;
-  let fixture: ComponentFixture<LightMeasurementComponent>;
+  let component: MagneticInductionComponent;
+  let fixture: ComponentFixture<MagneticInductionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LightMeasurementComponent ]
+      declarations: [ MagneticInductionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LightMeasurementComponent);
+    fixture = TestBed.createComponent(MagneticInductionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

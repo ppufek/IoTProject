@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   message: Map<string, string[]>
-  // message1: Map<string, string[]>
 
   constructor(private sharedService: SharedService) { }
 
@@ -38,9 +37,11 @@ export class DashboardComponent implements OnInit {
 
       for (let i = 0; i < this.message.get(key).length; i++) {
         if (key === "valuesTemp") {
-          newArray.forEach(obj => {
-              obj.value = this.message.get(key)[i];
-          });
+          // newArray.forEach(obj => {
+          //     obj.value = this.message.get(key)[i];
+          //     console.log(obj.value);
+          // });
+          newArray[i].value = this.message.get(key)[i]
         } else {
           let modal: PeriodicElement = {
             date: this.message.get(key)[i],
@@ -54,9 +55,6 @@ export class DashboardComponent implements OnInit {
 
     this.dataSource = new MatTableDataSource<PeriodicElement>(newArray);
 
-    // this.sharedService.sharedMessage2.subscribe(message => this.message1 = message)
-    // console.log("Hello from Dashb LIGHT")
-    // console.log(this.message1)
   }
 
 }

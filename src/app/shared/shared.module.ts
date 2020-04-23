@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardsComponent } from './widgets/cards/cards.component';
-import { LightMeasurementComponent } from '../light-measurement/light-measurement.component';
+import { MagneticInductionComponent } from '../magnetic-induction/magnetic-induction-measurement.component';
 
 
 
@@ -21,7 +21,7 @@ import { LightMeasurementComponent } from '../light-measurement/light-measuremen
     SidebarComponent,
     AreaComponent,
     CardsComponent,
-    LightMeasurementComponent
+    MagneticInductionComponent
 
     
   ],

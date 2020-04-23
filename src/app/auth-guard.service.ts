@@ -7,7 +7,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private sharedService:SharedService, public router: Router) {}
   canActivate(): boolean {
     if (!this.sharedService.isLoggedIn()) {
-      this.router.navigate(['dominik']);
+      this.router.navigate(['login']);
       return false;
     }
     return true;

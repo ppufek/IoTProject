@@ -2,6 +2,11 @@ table {
     width: 100%;
   }
 
+  p{
+    text-align:  center;
+    color: red; 
+  }
+
   .mat-column-date {
     word-wrap: break-word !important;
     white-space: unset !important;

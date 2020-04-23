@@ -1,37 +1,10 @@
 <div class="container-login100" style="background-image: url('../assets/img/bg-01.jpg');">
   <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
     <img class="logo" src="../assets/img/RITIntelligence.svg">
-    <!-- <h2 id="title">RIT Intelligence</h2> -->
+
     <div *ngIf="alert" class="alert">
       <h2 id="alertText">{{alert}}</h2>
     </div>
-    <!-- <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
-        <nz-input-group nzPrefixIcon="user">
-          <input [(ngModel)]="username" type="text" nz-input formControlName="userName" placeholder="Username" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input  [(ngModel)]="password"type="password" nz-input formControlName="password" placeholder="Password" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control>
-        <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-        <a class="login-form-forgot" routerLink = "dashboard" class="login-form-forgot">Forgot password</a>
-        <a routerLink = "dashboard"><button nz-button class="login-form-button" [nzType]="'primary'">Log in</button></a> 
-        Or
-        <a class = "register">register now!</a>
-      </nz-form-control>
-    </nz-form-item>
-  </form> -->
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">

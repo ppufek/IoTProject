@@ -11,11 +11,11 @@ export interface PeriodicElement {
   }
 
 @Component({
-  selector: 'app-light-measurement',
-  templateUrl: './light-measurement.component.html',
-  styleUrls: ['./light-measurement.component.css']
+  selector: 'app-magnetic-induction',
+  templateUrl: './magnetic-induction-measurement.component.html',
+  styleUrls: ['./magnetic-induction-measurement.component.css']
 })
-export class LightMeasurementComponent implements OnInit {
+export class MagneticInductionComponent implements OnInit {
 
     displayedColumns: string[] = ['date', 'value', 'measurementUnit'];
     dataSource = new MatTableDataSource<PeriodicElement>();
@@ -33,14 +33,14 @@ export class LightMeasurementComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
 
     this.sharedService.sharedMessage2.subscribe(message => this.message1 = message)
-    console.log( "ovdje", this.message1); 
+  
 
     let newArray: PeriodicElement[] = []
 
     for (let key of Array.from(this.message1.keys())) {
 
       for (let i = 0; i < this.message1.get(key).length; i++) {
-        if (key === "valuesLight") {
+        if (key === "valuesTesla") {
           newArray.forEach(obj => {
               obj.value = this.message1.get(key)[i];
           });
@@ -48,7 +48,7 @@ export class LightMeasurementComponent implements OnInit {
           let modal: PeriodicElement = {
             date: this.message1.get(key)[i],
             value: "0",
-            measurementUnit: "lx"
+            measurementUnit: "T"
           };
           newArray.push(modal)
         }
@@ -71,7 +71,7 @@ export class LightMeasurementComponent implements OnInit {
                   text: 'RIT Intelligence'
               },
               xAxis: {
-                  categories: measurements.get("datesLight"),
+                  categories: measurements.get("datesTesla"),
                   tickmarkPlacement: 'on',
                   title: {
                       enabled: false
@@ -79,7 +79,7 @@ export class LightMeasurementComponent implements OnInit {
               },
               yAxis: {
                   title: {
-                      text: 'LUX'
+                      text: 'Teslas'
                   },
                   labels: {
                       formatter: function () {
@@ -89,7 +89,7 @@ export class LightMeasurementComponent implements OnInit {
               },
               tooltip: {
                   split: true,
-                  valueSuffix: ' phots'
+                  valueSuffix: ' teslas'
               },
               plotOptions: {
                   area: {
@@ -103,8 +103,8 @@ export class LightMeasurementComponent implements OnInit {
                   }
               },
               series: [{
-                  name: 'Light Measurement',
-                  data: measurements.get("valuesLight").map(i=>Math.round(Number(i)* 10)/10),
+                  name: 'Magnetic Induction',
+                  data: measurements.get("valuesTesla").map(i=>Math.round(Number(i)* 10)/10),
               }, 
               ]
 

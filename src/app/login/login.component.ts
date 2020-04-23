@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
   regexp2;
   times: any = [];
   values: any = [];
-  timesLight: any = [];
-  valuesLight: any = [];
-  isLightMeasurement = false;
+  timesTesla: any = [];
+  valuesTesla: any = [];
+  isTeslaMeasurement = false;
   isTemperature = false;
   hide = true
-  passwordInput 
+  passwordInput
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private router: Router, private sharedService: SharedService) { }
 
@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    // this.regexValidation(); 
     this.validation();
-    // this.sanitization(); 
+
   }
 
   validation() {
@@ -78,8 +77,8 @@ export class LoginComponent implements OnInit {
     measurementsFromServer.forEach(element => {
       if (!keepGoing) {
         measurementListLocal.push(element)
-        
-        console.log(measurementListLocal[counter].type) //c8y_Serial, cro_c8y_LightMeasurement,c8y_TemperatureMeasurement
+
+        console.log(measurementListLocal[counter].type) //c8y_Serial, cro_c8y_LightMeasurement,c8y_TemperatureMeasurement, cro_TeslaMeasurement
 
         let type = measurementListLocal[counter].type
         if (type === "c8y_TemperatureMeasurement" && this.values.length < 5) {
@@ -96,18 +95,21 @@ export class LoginComponent implements OnInit {
             }
           });
         }
-        if (measurementListLocal[counter].type === "cro_c8y_LightMeasurement" && this.valuesLight.length < 5) {
-          this.isLightMeasurement = true;
+        if (measurementListLocal[counter].type === "cro_TeslaMeasurement" && this.valuesTesla.length < 5) {
+          this.isTeslaMeasurement = true;
           let times = "2020-01-28"
                     + " 11:" + Math.floor((Math.random() * 60) + 1) + ":" + Math.floor((Math.random() * 60) + 1)
-          this.timesLight.push(times)
-          let e = measurementListLocal[counter].c8y_LightMeasurement.e
-
+          this.timesTesla.push(times)
+          let e = measurementListLocal[counter].cro_TeslaMeasurement
+          console.log(measurementListLocal[counter].cro_TeslaMeasurement);
+          console.log("Paula");
+          console.log(measurementListLocal[counter].cro_TeslaMeasurement.e); 
+          console.log("Dominik");
           JSON.parse(JSON.stringify(e), (key, value) => {
             if (key === "unit") {
             }
             if (key === "value") {
-              this.valuesLight.push(value.toString())
+              this.valuesTesla.push(value.toString())
             }
           });
         }
@@ -116,9 +118,9 @@ export class LoginComponent implements OnInit {
       }//end if keepGoing
 
     });
-    if (this.isTemperature && this.isLightMeasurement) {
+    if (this.isTemperature && this.isTeslaMeasurement) {
       this.sharedService.insertTemperatureData(new Map([["datesTemp", this.times], ["valuesTemp", this.values]]))
-      this.sharedService.insertLightMeasurementData(new Map([["datesLight", this.timesLight], ["valuesLight", this.valuesLight]]))
+       this.sharedService.insertTeslaMeasurementData(new Map([["datesTesla", this.timesTesla], ["valuesTesla", this.valuesTesla]]))
 
       this.router.navigate(['/app/dashboard']);
     } else {
@@ -127,10 +129,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // regexValidation(){
-  //     this.regexp = new RegExp('[^!@#$%^&*(){}:"|/]')
-  //     this.regexp2 = new RegExp('[^/]io|[^@]cro ')
-  //     let test = this.regexp.test(this.username, this.password);
-  //     console.log(test); 
-  // }
+
 }
